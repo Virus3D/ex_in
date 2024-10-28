@@ -1,0 +1,32 @@
+<div id="cheque_block">
+	<div class="row">
+		<div class="col">
+			<h5 class="card-title">{{ SPEND_NAME}}</h5>
+		</div>
+		<div class="col text-end">
+			{{ SPEND_BALANCE|format_currency('RUB', locale='ru') }} / <span class="text-primary">{{ SPEND_SUM|format_currency('RUB', locale='ru') }}</span> / <span class="text-danger">{{ SPEND_SUM_DEF|format_currency('RUB', locale='ru') }}</span>
+		</div>
+	</div>
+
+	<form action="" class="form-horizontal ajax" id="cheque_form" role="form">
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" name="item" placeholder="товар" list="datalistItem" aria-label="item">
+			<datalist id="datalistItem">{{ DATALIST_ITEM|raw }}</datalist>
+			<input type="text" class="form-control" name="cost" placeholder="0.00" aria-label="balance">
+			<button type="submit" class="btn btn-primary cheque_btn">Добавить</button>
+		</div>
+		<input type="hidden" name="task" value="cheque_add">
+		<input type="hidden" name="spend_id" value="{{ SPEND_ID }}">
+	</form>
+
+	<ul class="list-group list-group-flush">
+		{% for item in list %}
+		<li class="list-group-item">
+			<div class="row row-cols-2">
+				<div class="col">{{ item.NAME }}</div>
+				<div class="col text-end">{{ item.COST|format_currency('RUB', locale='ru') }}</div>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+</div>

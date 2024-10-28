@@ -1,0 +1,28 @@
+			{% for item in card %}
+			<div class="col mb-3">
+				<div class="card">
+					<div class="card-header">
+						<div class="row row-cols-4">
+							<div class="col">{{ item.NAME}}</div>
+							<div class="col text-end text-success">{{ item.RECEIPT|format_currency('RUB', locale='ru') }}</div>
+							<div class="col text-end text-danger">{{ item.SPEND|format_currency('RUB', locale='ru') }}</div>
+							<div class="col text-end"></div>
+						</div>
+					</div>
+					<div class="card-body">
+						<ul class="list-group list-group-flush">
+							{% for c in item.card %}
+							<li class="list-group-item{% if c.TYPE == 1 %} list-group-item-danger{% endif %}">
+								<div class="row row-cols-4">
+									<div class="col">{{ c.NAME }}</div>
+									<div class="col text-end text-success">{{ c.RECEIPT|format_currency('RUB', locale='ru') }}</div>
+									<div class="col text-end text-danger">{{ c.SPEND|format_currency('RUB', locale='ru') }}</div>
+									<div class="col text-end">{{ c.BALANCE|format_currency('RUB', locale='ru') }}</div>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			{% endfor %}

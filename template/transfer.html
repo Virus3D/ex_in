@@ -1,0 +1,18 @@
+<ul class="list-group list-group-flush">
+	{% for item in transfer %}
+	<li class="list-group-item">
+		<div class="row row-cols-4">
+			<div class="col">{{ item.DATE }}</div>
+			<div class="col">
+				{{ item.CARD1 }}
+				<small>{{ item.CARD1_CAT }}</small>
+			</div>
+			<div class="col">
+				{{ item.CARD2 }}
+				<small>{{ item.CARD2_CAT }}</small>
+			</div>
+			<div class="col text-end">{{ item.BALANCE|format_currency('RUB', locale='ru') }}</div>
+		</div>
+	</li>
+	{% endfor %}
+</ul>
